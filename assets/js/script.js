@@ -1,75 +1,151 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    const contactForm = document.querySelector('.contact-form');
-    const submitBtn = document.querySelector('.btn-submit');
-    
-    if (submitBtn) {
-        const originalBtnText = submitBtn.innerText;
-
-        if (contactForm) {
-            contactForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                submitBtn.innerText = 'Enviando...';
-                submitBtn.disabled = true;
-
-                const data = new FormData(contactForm);
-
-                try {
-                    const response = await fetch(contactForm.action, {
-                        method: 'POST',
-                        body: data,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    });
-
-                    if (response.ok) {
-                        alert('Mensagem enviada com sucesso! Entrarei em contato em breve.');
-                        contactForm.reset();
-                    } else {
-                        alert('Ops! Houve um erro ao enviar. Tente novamente mais tarde.');
-                    }
-                } catch (error) {
-                    alert('Erro de conexão. Verifique sua internet.');
-                } finally {
-                    submitBtn.innerText = originalBtnText;
-                    submitBtn.disabled = false;
-                }
-            });
-        }
-    }
-
-    const cards = document.querySelectorAll('.bento-box');
-    cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            card.style.setProperty('--x', `${x}px`);
-            card.style.setProperty('--y', `${y}px`);
+    document.querySelectorAll('.main-nav a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            }
         });
     });
 
+    const observerOptions = {
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            } else {
+                entry.target.classList.remove('active');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(element => {
+        observer.observe(element);
+    });
+
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    timelineItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            timelineItems.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+        });
+    });
+
+    const timelineScroll = document.getElementById('timelineScroll');
+    const timelineBtnUp = document.querySelector('.timeline-wrapper .up-btn');
+    const timelineBtnDown = document.querySelector('.timeline-wrapper .down-btn');
+
+    if (timelineScroll && timelineBtnUp && timelineBtnDown) {
+        timelineBtnDown.addEventListener('click', () => {
+            timelineScroll.scrollBy({ top: 150, behavior: 'smooth' });
+        });
+        
+        timelineBtnUp.addEventListener('click', () => {
+            timelineScroll.scrollBy({ top: -150, behavior: 'smooth' });
+        });
+    }
+
+    const carouselCards = document.querySelectorAll('.carousel-card');
+    const btnPrev = document.querySelector('.carousel-wrapper .prev-btn');
+    const btnNext = document.querySelector('.carousel-wrapper .next-btn');
+    let currentCardIndex = 0;
+
+    function renderCarousel() {
+        const total = carouselCards.length;
+        carouselCards.forEach((card, index) => {
+            card.className = 'carousel-card';
+            
+            let offset = (index - currentCardIndex + total) % total;
+
+            if (offset === 0) {
+                card.classList.add('active');
+            } else if (offset === 1) {
+                card.classList.add('next-1');
+            } else if (offset === 2) {
+                card.classList.add('next-2');
+            } else if (offset === total - 1) {
+                card.classList.add('prev-1');
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+    }
+
+    if (btnNext && btnPrev && carouselCards.length > 0) {
+        btnNext.addEventListener('click', () => {
+            currentCardIndex = (currentCardIndex + 1) % carouselCards.length;
+            renderCarousel();
+        });
+        
+        btnPrev.addEventListener('click', () => {
+            currentCardIndex = (currentCardIndex - 1 + carouselCards.length) % carouselCards.length;
+            renderCarousel();
+        });
+        
+        renderCarousel();
+    }
+
+    const contactForm = document.querySelector('.gold-form');
+    const submitBtn = document.querySelector('.btn-gold');
+    
+    if (submitBtn && contactForm) {
+        const originalBtnText = submitBtn.innerText;
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            submitBtn.innerText = 'Enviando...';
+            submitBtn.disabled = true;
+
+            const data = new FormData(contactForm);
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    alert('Mensagem enviada com sucesso!');
+                    contactForm.reset();
+                } else {
+                    alert('Houve um erro ao enviar.');
+                }
+            } catch (error) {
+                alert('Erro de conexão.');
+            } finally {
+                submitBtn.innerText = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        });
+    }
+
     const modal = document.getElementById("imageModal");
     const modalImg = document.getElementById("img01");
-    const captionText = document.getElementById("caption");
     const closeBtn = document.querySelector(".close");
 
-    const galleryImages = document.querySelectorAll('.gallery-item img');
-
     if (modal && modalImg) {
-        galleryImages.forEach(img => {
-            img.addEventListener('click', function() {
+        carouselCards.forEach(img => {
+            img.addEventListener('click', function(e) {
+                if (!this.classList.contains('active')) {
+                    e.preventDefault();
+                    return;
+                }
                 modal.style.display = "block";
                 modalImg.src = this.src;
-                
-                const figcaption = this.nextElementSibling;
-                if (figcaption) {
-                    captionText.innerHTML = figcaption.innerHTML;
-                } else {
-                    captionText.innerHTML = this.alt;
-                }
             });
         });
 
