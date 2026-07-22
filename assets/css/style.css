@@ -6,6 +6,20 @@
     --gold-gradient: linear-gradient(135deg, #d4af37 0%, #ffdf73 50%, #aa771c 100%);
     --gold-solid: #d4af37;
     --border-subtle: rgba(212, 175, 55, 0.15);
+    --glow-center: rgba(212, 175, 55, 0.18);
+    --glow-edge: rgba(3, 3, 3, 1);
+}
+
+body.light-mode {
+    --bg-dark: #f5f5f7;
+    --bg-surface: rgba(255, 255, 255, 0.65);
+    --text-light: #1d1d1f;
+    --text-dim: #555555;
+    --gold-gradient: linear-gradient(135deg, #c59b27 0%, #d4af37 50%, #b38210 100%);
+    --gold-solid: #b8860b;
+    --border-subtle: rgba(0, 0, 0, 0.08);
+    --glow-center: rgba(212, 175, 55, 0.15);
+    --glow-edge: rgba(245, 245, 247, 1);
 }
 
 * {
@@ -22,6 +36,7 @@ body {
     line-height: 1.7;
     overflow-x: hidden;
     position: relative;
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 .bg-glow {
@@ -32,7 +47,8 @@ body {
     height: 100vh;
     z-index: -1;
     pointer-events: none;
-    background: radial-gradient(120% 100% at 50% 0%, rgba(212, 175, 55, 0.18) 0%, rgba(3, 3, 3, 1) 80%);
+    background: radial-gradient(120% 100% at 50% 0%, var(--glow-center) 0%, var(--glow-edge) 80%);
+    transition: background 0.4s ease;
 }
 
 .dynamic-wrapper {
@@ -53,6 +69,7 @@ body {
 .main-nav {
     display: inline-flex;
     justify-content: center;
+    align-items: center;
     gap: 20px;
     background: var(--bg-surface);
     backdrop-filter: blur(12px);
@@ -61,6 +78,7 @@ body {
     border-radius: 30px;
     margin-bottom: 50px;
     flex-wrap: wrap;
+    transition: background 0.4s ease, border-color 0.4s ease;
 }
 
 .main-nav a {
@@ -73,6 +91,22 @@ body {
 }
 
 .main-nav a:hover {
+    color: var(--gold-solid);
+}
+
+.theme-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-left: 5px;
+    padding-left: 20px;
+    border-left: 1px solid var(--border-subtle);
+}
+
+.theme-btn:hover {
     color: var(--gold-solid);
 }
 
@@ -91,6 +125,7 @@ body {
     color: var(--text-light);
     font-weight: 400;
     margin-bottom: 25px;
+    transition: color 0.4s ease;
 }
 
 .hero-bio {
@@ -98,6 +133,7 @@ body {
     max-width: 600px;
     margin: 0 auto;
     font-size: 1.1rem;
+    transition: color 0.4s ease;
 }
 
 .section-title {
@@ -113,6 +149,7 @@ body {
 .content-section p {
     font-size: 1.1rem;
     color: var(--text-light);
+    transition: color 0.4s ease;
 }
 
 .experience-card {
@@ -121,6 +158,7 @@ body {
     border-left: 3px solid var(--gold-solid);
     padding: 30px;
     border-radius: 0 12px 12px 0;
+    transition: background 0.4s ease, border-color 0.4s ease;
 }
 
 .experience-header {
@@ -150,6 +188,7 @@ body {
     border: 1px solid var(--border-subtle);
     border-radius: 16px;
     padding: 20px;
+    transition: background 0.4s ease, border-color 0.4s ease;
 }
 
 .timeline-container {
@@ -175,6 +214,7 @@ body {
     gap: 30px;
     padding-bottom: 20px;
     padding-top: 10px;
+    transition: border-color 0.4s ease;
 }
 
 .timeline-item {
@@ -205,7 +245,7 @@ body {
     font-size: 1.15rem;
     color: var(--text-light);
     margin-bottom: 5px;
-    transition: 0.3s;
+    transition: color 0.3s ease;
 }
 
 .timeline-item.active .timeline-content h4 {
@@ -252,6 +292,7 @@ body {
     width: 100%;
     margin-top: 10px;
     line-height: 1.5;
+    transition: color 0.4s ease;
 }
 
 .timeline-btn {
@@ -275,12 +316,14 @@ body {
     border-radius: 16px;
     padding: 40px;
     border: 1px solid var(--border-subtle);
+    transition: background 0.4s ease, border-color 0.4s ease;
 }
 
 .project-info h4 {
     font-size: 1.5rem;
     margin-bottom: 15px;
-    color: #fff;
+    color: var(--text-light);
+    transition: color 0.4s ease;
 }
 
 .carousel-wrapper {
@@ -312,6 +355,10 @@ body {
     opacity: 0;
     pointer-events: none;
     box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+}
+
+body.light-mode .carousel-card {
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
 }
 
 .carousel-card.active {
@@ -364,7 +411,7 @@ body {
 
 .carousel-btn:hover {
     background: var(--gold-solid);
-    color: #000;
+    color: var(--bg-dark);
     transform: scale(1.1);
 }
 
@@ -381,10 +428,10 @@ body {
     border: 1px solid var(--border-subtle);
     padding: 18px;
     border-radius: 8px;
-    color: #fff;
+    color: var(--text-light);
     font-family: 'Outfit', sans-serif;
     font-size: 1rem;
-    transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+    transition: border-color 0.3s, box-shadow 0.3s, background 0.4s ease, color 0.4s ease;
 }
 
 .gold-form textarea {
@@ -459,6 +506,10 @@ body {
     background-color: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(10px);
     padding-top: 50px;
+}
+
+body.light-mode .modal {
+    background-color: rgba(255, 255, 255, 0.95);
 }
 
 .modal-content {
