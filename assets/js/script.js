@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     document.querySelectorAll('.main-nav a').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -14,24 +14,50 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const observerOptions = {
-        threshold: 0.15,
-        rootMargin: "0px 0px -50px 0px"
-    };
+    function initScrollReveal() {
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            } else {
-                entry.target.classList.remove('active');
-            }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else if (entry.boundingClientRect.top > 0) {
+                    entry.target.classList.remove('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(element => {
+            observer.observe(element);
         });
-    }, observerOptions);
+    }
 
-    document.querySelectorAll('.reveal').forEach(element => {
-        observer.observe(element);
-    });
+    const textToType = "Olá, eu sou Rafael.";
+    const typingSpeed = 60;
+    const typewriterElement = document.getElementById('typewriter');
+    let typeIndex = 0;
+
+    function typeWriter() {
+        if (typeIndex < textToType.length) {
+            typewriterElement.textContent += textToType.charAt(typeIndex);
+            typeIndex++;
+            setTimeout(typeWriter, typingSpeed);
+        } else {
+            setTimeout(() => {
+                initScrollReveal();
+            }, 400);
+        }
+    }
+
+    if (typewriterElement) {
+        typewriterElement.classList.add('typing-cursor');
+        setTimeout(typeWriter, 400);
+    } else {
+        initScrollReveal();
+    }
 
     const timelineItems = document.querySelectorAll('.timeline-item');
     timelineItems.forEach(item => {
@@ -97,6 +123,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const contactForm = document.querySelector('.gold-form');
     const submitBtn = document.querySelector('.btn-gold');
+    const messageInput = document.querySelector('.gold-form textarea');
+
+    if (messageInput) {
+        messageInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = this.scrollHeight + 'px';
+        });
+    }
     
     if (submitBtn && contactForm) {
         const originalBtnText = submitBtn.innerText;
@@ -121,6 +155,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.ok) {
                     alert('Mensagem enviada com sucesso!');
                     contactForm.reset();
+                    if (messageInput) {
+                        messageInput.style.height = 'auto';
+                    }
                 } else {
                     alert('Houve um erro ao enviar.');
                 }

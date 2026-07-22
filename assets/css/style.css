@@ -384,7 +384,13 @@ body {
     color: #fff;
     font-family: 'Outfit', sans-serif;
     font-size: 1rem;
-    transition: 0.3s;
+    transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+.gold-form textarea {
+    resize: none;
+    overflow: hidden;
+    min-height: 120px;
 }
 
 .gold-form input:focus, .gold-form textarea:focus {
@@ -482,6 +488,20 @@ body {
 
 .close:hover {
     color: var(--gold-solid);
+}
+
+.typing-cursor::after {
+    content: '|';
+    -webkit-text-fill-color: var(--gold-solid);
+    color: var(--gold-solid);
+    margin-left: 4px;
+    font-weight: 300;
+    animation: blinkCursor 1.6s infinite;
+}
+
+@keyframes blinkCursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
 
 @media (max-width: 768px) {
