@@ -17,46 +17,63 @@
     <div class="dynamic-wrapper">
         <header class="hero-section">
             <nav class="main-nav">
-                <a href="#about">Sobre</a>
-                <a href="#experience">Experiência</a>
-                <a href="#stack">Stack</a>
-                <a href="#projects">Projetos</a>
-                <a href="#contact">Contato</a>
-                <button id="themeToggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+                <a href="#about" data-i18n="nav_about">Sobre</a>
+                <a href="#experience" data-i18n="nav_experience">Experiência</a>
+                <a href="#stack" data-i18n="nav_stack">Stack</a>
+                <a href="#projects" data-i18n="nav_projects">Projetos</a>
+                <a href="#contact" data-i18n="nav_contact">Contato</a>
+                <button id="langToggle" class="theme-btn" aria-label="Alternar idioma">EN</button>
+                <button id="themeToggle" class="theme-btn" aria-label="Alternar tema claro e escuro"><i class="fas fa-moon"></i></button>
             </nav>
             <h1 class="gold-text" id="typewriter"></h1>
-            <h2 class="subtitle reveal">&lt;/&gt; Engenharia de Software, Desenvolvedor Web</h2>
-            <p class="hero-bio reveal">Construindo a ponte entre regras de negócio complexas e interfaces intuitivas. Foco em arquitetura de sistemas e soluções web responsivas de alto impacto.</p>
+            <h2 class="subtitle reveal" data-i18n="subtitle">&lt;/&gt; Engenharia de Software, Desenvolvedor Web</h2>
+            <p class="hero-bio reveal" data-i18n="hero_bio">Construindo a ponte entre regras de negócio complexas e interfaces intuitivas. Foco em arquitetura de sistemas e soluções web responsivas de alto impacto.</p>
         </header>
 
         <section id="about" class="content-section reveal">
-            <h3 class="section-title">Sobre e Visão</h3>
-            <p>Atualmente cursando Engenharia de Software na FAMETRO. Minha jornada no desenvolvimento me permite criar desde APIs robustas no backend até interfaces dinâmicas, reaproveitando conceitos sólidos de web dev para entregar produtos completos.</p>
+            <h3 class="section-title" data-i18n="about_title">Sobre e Visão</h3>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p data-i18n="about_text">Atualmente cursando Engenharia de Software na FAMETRO. Minha jornada no desenvolvimento me permite criar desde APIs robustas no backend até interfaces dinâmicas, reaproveitando conceitos sólidos de web dev para entregar produtos completos.</p>
+                </div>
+                <div class="about-location">
+                    <div class="live-status-card" tabindex="0" data-i18n-aria="status_aria">
+                        <div class="status-time">
+                            <i class="far fa-clock"></i>
+                            <span id="liveTime">--:-- AMT</span>
+                        </div>
+                        <div class="status-location">
+                            <span class="neon-dot"></span>
+                            <span data-i18n="status_text">Baseado em Manaus. Disponível Globalmente.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section id="experience" class="content-section reveal">
-            <h3 class="section-title">Experiência</h3>
+            <h3 class="section-title" data-i18n="exp_title">Experiência</h3>
             <div class="experience-card">
                 <div class="experience-header">
-                    <h4>Desenvolvedor e Estagiário</h4>
+                    <h4 data-i18n="exp_role">Desenvolvedor e Estagiário</h4>
                     <span class="gold-accent">FAPEAM</span>
                 </div>
-                <p>Atuação direta na modernização de processos internos, substituindo fluxos manuais por soluções digitais automatizadas e seguras, com foco em controle de patrimônio.</p>
+                <p data-i18n="exp_desc">Atuação direta na modernização de processos internos, substituindo fluxos manuais por soluções digitais automatizadas e seguras, com foco em controle de patrimônio.</p>
             </div>
         </section>
 
         <section id="stack" class="content-section reveal">
-            <h3 class="section-title">Evolução Tecnológica</h3>
+            <h3 class="section-title" data-i18n="stack_title">Evolução Tecnológica</h3>
             <div class="timeline-wrapper">
-                <button class="timeline-btn up-btn"><i class="fas fa-chevron-up"></i></button>
+                <button class="timeline-btn up-btn" aria-label="Rolar para cima"><i class="fas fa-chevron-up"></i></button>
                 
-                <div class="timeline-container" id="timelineScroll">
+                <div class="timeline-container" id="timelineScroll" tabindex="0" aria-label="Linha do tempo de habilidades">
                     <div class="timeline-track">
                         
                         <div class="timeline-item active">
                             <div class="timeline-dot"></div>
                             <div class="timeline-content">
-                                <h4>Fundação Web</h4>
+                                <h4 data-i18n="stack_web">Fundação Web</h4>
                                 <div class="timeline-details">
                                     <span class="skill-tag">HTML5</span>
                                     <span class="skill-tag">CSS3</span>
@@ -69,7 +86,7 @@
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
                             <div class="timeline-content">
-                                <h4>Banco de Dados</h4>
+                                <h4 data-i18n="stack_db">Banco de Dados</h4>
                                 <div class="timeline-details">
                                     <span class="skill-tag">MySQL</span>
                                     <span class="skill-tag">PostgreSQL</span>
@@ -81,7 +98,7 @@
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
                             <div class="timeline-content">
-                                <h4>Frameworks e Tecnologias</h4>
+                                <h4 data-i18n="stack_fw">Frameworks e Tecnologias</h4>
                                 <div class="timeline-details">
                                     <span class="skill-tag">PHP</span>
                                     <span class="skill-tag">Laravel</span>
@@ -93,7 +110,7 @@
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
                             <div class="timeline-content">
-                                <h4>Infraestrutura e Deploy</h4>
+                                <h4 data-i18n="stack_infra">Infraestrutura e Deploy</h4>
                                 <div class="timeline-details">
                                     <span class="skill-tag">Apache</span>
                                     <span class="skill-tag">Linux</span>
@@ -106,11 +123,11 @@
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
                             <div class="timeline-content">
-                                <h4>Sistemas Legados e Arquitetura</h4>
+                                <h4 data-i18n="stack_legacy">Sistemas Legados e Arquitetura</h4>
                                 <div class="timeline-details">
-                                    <span class="skill-tag">Refatoração de SGC</span>
-                                    <span class="skill-tag">Modernização de Código</span>
-                                    <span class="skill-tag">Otimização de Performance</span>
+                                    <span class="skill-tag" data-i18n="stack_legacy_1">Refatoração de SGC</span>
+                                    <span class="skill-tag" data-i18n="stack_legacy_2">Modernização de Código</span>
+                                    <span class="skill-tag" data-i18n="stack_legacy_3">Otimização de Performance</span>
                                 </div>
                             </div>
                         </div>
@@ -118,12 +135,12 @@
                         <div class="timeline-item">
                             <div class="timeline-dot current"></div>
                             <div class="timeline-content">
-                                <h4>Foco Atual e Perfil Profissional</h4>
+                                <h4 data-i18n="stack_focus">Foco Atual e Perfil Profissional</h4>
                                 <div class="timeline-details">
                                     <span class="skill-tag highlight">React Native</span>
                                     <span class="skill-tag highlight">Expo</span>
                                     <span class="skill-tag">Mobile UI/UX</span>
-                                    <p class="context-text">Aproveitando a flexibilidade e o meu conhecimento prévio em desenvolvimento web para construir experiências mobile nativas de forma orgânica. Destaco-me pela fácil adaptação a diferentes ambientes e pelo ótimo trabalho em equipe, sempre disposto a aprender novas tecnologias para solucionar os mais diversos problemas e aprimorar minha visão sistêmica.</p>
+                                    <p class="context-text" data-i18n="stack_focus_desc">Aproveitando a flexibilidade e o meu conhecimento prévio em desenvolvimento web para construir experiências mobile nativas de forma orgânica. Destaco-me pela fácil adaptação a diferentes ambientes e pelo ótimo trabalho em equipe, sempre disposto a aprender novas tecnologias para solucionar os mais diversos problemas e aprimorar minha visão sistêmica.</p>
                                 </div>
                             </div>
                         </div>
@@ -131,50 +148,56 @@
                     </div>
                 </div>
                 
-                <button class="timeline-btn down-btn"><i class="fas fa-chevron-down"></i></button>
+                <button class="timeline-btn down-btn" aria-label="Rolar para baixo"><i class="fas fa-chevron-down"></i></button>
             </div>
         </section>
 
         <main id="projects" class="content-section reveal">
-            <h3 class="section-title">Projeto Destaque</h3>
+            <h3 class="section-title" data-i18n="proj_title">Projeto Destaque</h3>
             <div class="project-showcase">
                 <div class="project-info">
-                    <h4>Sistema de Gestão de Inventário</h4>
-                    <p>Plataforma Full-Stack desenvolvida para a FAPEAM. O sistema elimina a dependência de planilhas locais, oferecendo controle de acesso, rastreabilidade de itens e um dashboard executivo em tempo real.</p>
+                    <h4 data-i18n="proj_name">Sistema de Gestão de Inventário</h4>
+                    <p data-i18n="proj_desc">Plataforma Full-Stack desenvolvida para a FAPEAM. O sistema elimina a dependência de planilhas locais, oferecendo controle de acesso, rastreabilidade de itens e um dashboard executivo em tempo real.</p>
                 </div>
                 
                 <div class="carousel-wrapper">
-                    <button class="carousel-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
-                    <div class="carousel-stack" id="projectCarousel">
-                        <img class="carousel-card" src="assets/img/Login-Inventario.png" alt="Tela de Login do Sistema">
-                        <img class="carousel-card" src="assets/img/DashBoardInventario.png" alt="Dashboard Executivo">
-                        <img class="carousel-card" src="assets/img/Sectors-Inventario.png" alt="Seleção de Setores">
-                        <img class="carousel-card" src="assets/img/Lista-inventario.png" alt="Lista de Inventário">
-                        <img class="carousel-card" src="assets/img/Tramitacao-inventario.png" alt="Fluxo de Tramitações">
+                    <button class="carousel-btn prev-btn" aria-label="Imagem anterior do carrossel"><i class="fas fa-chevron-left"></i></button>
+                    <div class="carousel-stack" id="projectCarousel" aria-live="polite">
+                        <img class="carousel-card" src="assets/img/Login-Inventario.png" alt="Tela de Login do Sistema" role="button" tabindex="0">
+                        <img class="carousel-card" src="assets/img/DashBoardInventario.png" alt="Dashboard Executivo" role="button" tabindex="-1">
+                        <img class="carousel-card" src="assets/img/Sectors-Inventario.png" alt="Seleção de Setores" role="button" tabindex="-1">
+                        <img class="carousel-card" src="assets/img/Lista-inventario.png" alt="Lista de Inventário" role="button" tabindex="-1">
+                        <img class="carousel-card" src="assets/img/Tramitacao-inventario.png" alt="Fluxo de Tramitações" role="button" tabindex="-1">
                     </div>
-                    <button class="carousel-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                    <button class="carousel-btn next-btn" aria-label="Próxima imagem do carrossel"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
         </main>
 
         <footer id="contact" class="contact-section reveal">
-            <h3 class="section-title">Vamos Conversar</h3>
+            <h3 class="section-title" data-i18n="contact_title">Vamos Conversar</h3>
             <form action="https://formspree.io/f/xaqqyaka" method="POST" class="gold-form">
-                <input type="text" name="name" placeholder="Nome" required>
-                <input type="email" name="_replyto" placeholder="E-mail" required>
-                <textarea name="message" rows="3" placeholder="Mensagem" required></textarea>
-                <button type="submit" class="btn-gold">Enviar</button>
+                <label for="userName" class="sr-only" data-i18n="form_name_label">Nome</label>
+                <input type="text" id="userName" name="name" placeholder="Nome" data-i18n-placeholder="form_name" required>
+                
+                <label for="userEmail" class="sr-only" data-i18n="form_email_label">E-mail</label>
+                <input type="email" id="userEmail" name="_replyto" placeholder="E-mail" data-i18n-placeholder="form_email" required>
+                
+                <label for="userMessage" class="sr-only" data-i18n="form_msg_label">Mensagem</label>
+                <textarea id="userMessage" name="message" rows="3" placeholder="Mensagem" data-i18n-placeholder="form_msg" required></textarea>
+                
+                <button type="submit" class="btn-gold" data-i18n="form_btn">Enviar</button>
             </form>
-            <nav class="social-links">
-                <a href="https://github.com/Rafael2407" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/rafael-s-paixão-4782b1383" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://wa.me/5592988381006" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <nav class="social-links" aria-label="Redes Sociais">
+                <a href="https://github.com/Rafael2407" target="_blank" aria-label="Perfil no GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/rafael-s-paixão-4782b1383" target="_blank" aria-label="Perfil no LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://wa.me/5592999999999" target="_blank" aria-label="Contato via WhatsApp"><i class="fab fa-whatsapp"></i></a>
             </nav>
         </footer>
 
-        <div id="imageModal" class="modal">
-            <span class="close">&times;</span>
-            <img class="modal-content" id="img01">
+        <div id="imageModal" class="modal" role="dialog" aria-modal="true" aria-label="Imagem Ampliada">
+            <button class="close" aria-label="Fechar janela">&times;</button>
+            <img class="modal-content" id="img01" alt="Visualização ampliada">
         </div>
     </div>
     <script src="assets/js/script.js"></script>
